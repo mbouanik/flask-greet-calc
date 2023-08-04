@@ -4,10 +4,7 @@ from operations import *
 
 app = Flask(__name__)
 
-
-@app.route("/")
-def home():
-    return "hello"
+operators = {"add": add, "sub": sub, "mult": mult, "div": div}
 
 
 @app.route("/add")
@@ -36,6 +33,14 @@ def divide():
     a = request.args["a"]
     b = request.args["b"]
     return f"{div(int(a), int(b))}"
+
+
+@app.route("/math/<op>/")
+def math(op):
+    operation = operators[op]
+    a = request.args["a"]
+    b = request.args["b"]
+    return f"{operation(int(a), int(b))}"
 
 
 if __name__ == "__main__":

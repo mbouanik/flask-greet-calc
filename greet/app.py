@@ -3,11 +3,6 @@ from flask import Flask
 app = Flask(__name__)
 
 
-@app.route("/")
-def home():
-    return ""
-
-
 @app.route("/welcome")
 def welcome():
     return "welcome"
